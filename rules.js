@@ -14,6 +14,9 @@ class Location extends Scene {
     create(key) {
         let locationData = this.engine.storyData.Locations[key]; // TODO: use `key` to get the data object for the current story location
         this.engine.show(locationData.Body); // TODO: replace this text by the Body of the location data
+        if(key == "KeyPressed"){
+            KeyFound = true;
+        }
         if(KeyFound){
             if(locationData.Hidden){
                 for(let choice of locationData.Hidden) { // TODO: loop over the location's Choices
@@ -43,10 +46,6 @@ class Location extends Scene {
         if(choice) {
             this.engine.show("&gt; "+choice.Text);
             this.engine.gotoScene(Location, choice.Target);
-            if(choice.Text == "Press The Button")
-            {
-                KeyFound = true;
-            }
         } else {
             this.engine.gotoScene(End);
         }
