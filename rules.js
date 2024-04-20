@@ -1,3 +1,4 @@
+let KeyFound = false;
 class Start extends Scene {
     create() {
         this.engine.setTitle(this.engine.storyData.Title); // TODO: replace this text using this.engine.storyData to find the story title
@@ -13,8 +14,8 @@ class Location extends Scene {
     create(key) {
         let locationData = this.engine.storyData.Locations[key]; // TODO: use `key` to get the data object for the current story location
         this.engine.show(locationData.Body); // TODO: replace this text by the Body of the location data
-        if(this.engine.storyData.KeyFound){
-            if(locationData.Hidden == 1){
+        if(KeyFound){
+            if(locationData.Hidden){
                 for(let choice of locationData.Hidden) { // TODO: loop over the location's Choices
                     this.engine.addChoice(choice.Text, choice); // TODO: use the Text of the choice
                     // TODO: add a useful second argument to addChoice so that the current code of handleChoice below works
@@ -28,10 +29,6 @@ class Location extends Scene {
         }
         else{
             if(locationData.Choices) { // TODO: check if the location has any Choices
-                if(key == "Key")
-                {
-                    this.engine.storyData.KeyFound = 1;
-                }
                 for(let choice of locationData.Choices) { // TODO: loop over the location's Choices
                     this.engine.addChoice(choice.Text, choice); // TODO: use the Text of the choice
                     // TODO: add a useful second argument to addChoice so that the current code of handleChoice below works
@@ -46,6 +43,10 @@ class Location extends Scene {
         if(choice) {
             this.engine.show("&gt; "+choice.Text);
             this.engine.gotoScene(Location, choice.Target);
+            if(choice.Text == "Press The Button")
+            {
+                KeyFound = true;
+            }
         } else {
             this.engine.gotoScene(End);
         }

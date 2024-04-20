@@ -2,7 +2,6 @@
     "Title": "Lost in the Forest",
     "Credits": "Created by Brian Jin (byjin@ucsc.edu).",
     "InitialLocation": "HomeTree",
-    "KeyFound": 0,
     "Locations": {
         "HomeTree": {
             "Body": "A massive tree lies here, a smaller tree stump lies inside, with berries scattered all around.",
@@ -92,6 +91,20 @@
                     "Text": "South",
                     "Target": "HomeTree"
                 }
+            ],
+            "Hidden": [
+                {
+                    "Text": "West",
+                    "Target": "KeyPressed"
+                },
+                {
+                    "Text": "East",
+                    "Target": "Flower Field"
+                },
+                {
+                    "Text": "South",
+                    "Target": "HomeTree"
+                }
             ]
         },
         "Pond": {
@@ -148,7 +161,24 @@
             ]
         },
         "Key": {
-            "Body": "You find a button and due to your curiousity, you press it. A loud noise comes from the east",
+            "Body": "A big red button sits in the middle of this area, you could press it or continue moving on",
+            "Choices": [
+                {
+                    "Text": "East",
+                    "Target": "Path 1"
+                },
+                {
+                    "Text": "South",
+                    "Target": "Stream"
+                },
+                {
+                    "Text":"Press the Button",
+                    "Target": "KeyPressed"
+                }
+            ]
+        },
+        "KeyPressed": {
+            "Body": "The big red button in the middle of this area has been pressed",
             "Choices": [
                 {
                     "Text": "East",
@@ -189,6 +219,20 @@
                 {
                     "Text": "North",
                     "Target": "Key"
+                },
+                {
+                    "Text": "South",
+                    "Target": "Pond"
+                },
+                {
+                    "Text": "East",
+                    "Target": "HomeTree"
+                }
+            ],
+            "Hidden": [
+                {
+                    "Text": "North",
+                    "Target": "KeyPressed"
                 },
                 {
                     "Text": "South",
